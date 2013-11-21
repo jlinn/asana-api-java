@@ -23,6 +23,10 @@ public class UsersClientTest extends BaseTest{
 
     @Test
     public void testGet(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         User me = client.getMe();
 
         User meById = client.getUser(me.id);
@@ -33,6 +37,10 @@ public class UsersClientTest extends BaseTest{
 
     @Test
     public void testGetUsers(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         List<User> users = client.getUsers();
 
         for(User user : users){

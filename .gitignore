@@ -4,3 +4,5 @@
 # build files
 /data
 /target
+pom.xml.releaseBackup
+release.properties

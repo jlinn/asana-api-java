@@ -23,6 +23,10 @@ public class TagsClientTest extends BaseTest{
 
     @Test
     public void testTags(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         Tag tag = client.createTag(new TagsRequestBuilder(4440299545542L, "test tag").color(Colors.DARK_BLUE));
 
         Tag retrievedTag = client.getTag(tag.id);

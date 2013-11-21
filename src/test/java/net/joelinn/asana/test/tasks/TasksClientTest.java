@@ -25,8 +25,13 @@ public class TasksClientTest extends BaseTest{
 
     @Test
     public void testTasks(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         Task newTask = client.createTask(new TaskRequestBuilder(4440299545542L, "Test task!").addFollower(4858211767376L)
-            .addFollower(4440682739786L).notes("Here be notes.").assignee(4440682739795L));
+            .addFollower(4440682739786L).notes("Here be notes.").assignee(4440682739795L).addProject(4440682259461L)
+            .assigneeStatus(TaskRequestBuilder.ASSIGNEE_STATUS_LATER).dueOn(2020, 1, 1));
 
         Task retrievedTask = client.getTask(newTask.id);
 

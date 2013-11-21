@@ -91,7 +91,7 @@ public class TasksClient extends AbstractClient{
      * @param insertBefore true to insert before insertId or at the end of the list if insertId is null; false to
      *                     insert after insertId or at the beginning of the list if insertId is null
      */
-    public void addProject(long taskId, long projectId, Long insertId, boolean insertBefore){
+    public void addProject(long taskId, long projectId, long insertId, boolean insertBefore){
         MultivaluedMapImpl params = new MultivaluedMapImpl();
         if(insertBefore){
             params.add("insert_before", insertId);
@@ -110,7 +110,9 @@ public class TasksClient extends AbstractClient{
      * @param projectId the id of the project
      */
     public void addProject(long taskId, long projectId){
-        addProject(taskId, projectId, null, false);
+        MultivaluedMapImpl params = new MultivaluedMapImpl();
+        params.add("project", projectId);
+        post(String.format("tasks/%s/addProject", taskId), params);
     }
 
     /**

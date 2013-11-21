@@ -21,6 +21,10 @@ public class TeamsClientTest extends BaseTest{
 
     @Test
     public void testTeams(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         Teams teams = client.getTeams(4440299545542L);
 
         for(Team team : teams){

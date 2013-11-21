@@ -20,6 +20,10 @@ public class WorkspacesClientTest extends BaseTest{
 
     @Test
     public void testGetWorkspaces(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         Workspaces workspaces = client.getWorkspaces();
         System.out.println(workspaces.get(0).name);
         System.out.println(workspaces.get(0).id);
@@ -27,6 +31,10 @@ public class WorkspacesClientTest extends BaseTest{
 
     @Test
     public void testUpdateWorkspace(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         long workspaceId = 498346170860L;   //replace this with your own workspace id
         client.updateWorkspace(workspaceId, "Personal Projects!");
     }

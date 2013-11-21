@@ -24,6 +24,10 @@ public class ProjectsClientTest extends BaseTest{
 
     @Test
     public void testProjects(){
+        if(getApiKey().equals("")){
+            // skip the test if no api key has been provided
+            return;
+        }
         Project project = client.createProject(new ProjectRequestBuilder(4440299545542L, "test project")
                 .team(4440299545545L).notes("this is a test").color("dark-blue"));
 
