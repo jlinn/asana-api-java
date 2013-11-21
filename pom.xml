@@ -5,7 +5,7 @@
     <name>asana-api-java</name>
     <groupId>net.joelinn</groupId>
     <artifactId>asana</artifactId>
-    <version>0.5.2-SNAPSHOT</version>
+    <version>0.5.2</version>
     <packaging>jar</packaging>
     <description>A Java client library for Asana's API</description>
     <url>http://github.com/jlinn/asana-api-java</url>
@@ -27,7 +27,7 @@
         <connection>scm:git:git@github.com:jlinn/asana-api-java.git</connection>
         <developerConnection>scm:git:git@github.com:jlinn/asana-api-java.git</developerConnection>
         <url>http://github.com/jlinn/asana-api-java</url>
-      <tag>HEAD</tag>
+      <tag>asana-0.5.2</tag>
   </scm>
 
     <properties>
