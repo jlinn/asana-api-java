@@ -5,6 +5,15 @@ A Java client library for Asana's API
 
 Usage
 -----
+Maven dependency:
+```xml
+<dependency>
+     <groupId>net.joelinn</groupId>
+     <artifactId>asana</artifactId>
+     <version>0.5.4</version>
+</dependency>
+```
+
 Creating a task:
 ```java
 Asana asana = new Asana("your api key");
