@@ -8,6 +8,10 @@ import net.joelinn.asana.teams.TeamsClient;
 import net.joelinn.asana.users.UsersClient;
 import net.joelinn.asana.workspaces.WorkspacesClient;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Joe Linn
  * 11/20/13
@@ -15,70 +19,51 @@ import net.joelinn.asana.workspaces.WorkspacesClient;
 public class Asana {
     protected String apiKey;
 
-    protected ProjectsClient projectsClient;
-
-    protected StoriesClient storiesClient;
-
-    protected TagsClient tagsClient;
-
-    protected TasksClient tasksClient;
-
-    protected TeamsClient teamsClient;
-
-    protected UsersClient usersClient;
-
-    protected WorkspacesClient workspacesClient;
+    protected Map<Class<? extends AbstractClient>, AbstractClient> clients;
 
     public Asana(String apiKey){
         this.apiKey = apiKey;
+        clients = new HashMap<>();
+    }
+
+    @SuppressWarnings("unchecked")
+    protected <T> T getClient(Class<? extends AbstractClient> clazz){
+        if(!clients.containsKey(clazz)){
+            try {
+                clients.put(clazz, clazz.getConstructor(String.class).newInstance(apiKey));
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                // This should never happen.
+                e.printStackTrace();
+            }
+        }
+        return (T) clients.get(clazz);
     }
 
     public ProjectsClient projects(){
-        if(projectsClient == null){
-            projectsClient = new ProjectsClient(apiKey);
-        }
-        return projectsClient;
+        return getClient(ProjectsClient.class);
     }
 
     public StoriesClient stories(){
-        if(storiesClient == null){
-            storiesClient = new StoriesClient(apiKey);
-        }
-        return storiesClient;
+        return getClient(StoriesClient.class);
     }
 
     public TagsClient tags(){
-        if(tagsClient == null){
-            tagsClient = new TagsClient(apiKey);
-        }
-        return tagsClient;
+        return getClient(TagsClient.class);
     }
 
     public TasksClient tasks(){
-        if(tasksClient == null){
-            tasksClient = new TasksClient(apiKey);
-        }
-        return tasksClient;
+        return getClient(TasksClient.class);
     }
 
     public TeamsClient teams(){
-        if(teamsClient == null){
-            teamsClient = new TeamsClient(apiKey);
-        }
-        return teamsClient;
+        return getClient(TeamsClient.class);
     }
 
     public UsersClient users(){
-        if(usersClient == null){
-            usersClient = new UsersClient(apiKey);
-        }
-        return usersClient;
+        return getClient(UsersClient.class);
     }
 
     public WorkspacesClient workspaces(){
-        if(workspacesClient == null){
-            workspacesClient = new WorkspacesClient(apiKey);
-        }
-        return workspacesClient;
+        return getClient(WorkspacesClient.class);
     }
 }
