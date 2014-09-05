@@ -32,10 +32,17 @@ public class Task {
     public String dueOn;
 
     public Users followers;
+    
+    public boolean hearted;
+    
+    public Users hearts;
+    
+    @JsonProperty("num_hearts")
+    public Integer numHearts;
 
     @JsonProperty("modified_at")
     public String modifiedAt;
-
+    
     public String name;
     public String notes;
     public Projects projects;
