@@ -83,7 +83,7 @@ public abstract class AbstractClient {
     private WebResource.Builder getResourceBuilder(String url, MultivaluedMapImpl queryParams){
         WebResource webResource = service.path(url);
         if(queryParams != null){
-            webResource.queryParams(queryParams);
+            webResource = webResource.queryParams(queryParams);
         }
         return webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_FORM_URLENCODED);
     }
