@@ -5,14 +5,18 @@ import net.joelinn.asana.users.User;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 
+import java.util.Date;
+
 /**
  * Joe Linn
  * 11/20/13
  */
 @JsonRootName("data")
 public class Story {
+    public long id;
+
     @JsonProperty("created_at")
-    public String createdAt;
+    public Date createdAt;
 
     @JsonProperty("created_by")
     public User createdBy;
