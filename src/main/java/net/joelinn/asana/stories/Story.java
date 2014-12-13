@@ -2,6 +2,8 @@ package net.joelinn.asana.stories;
 
 import net.joelinn.asana.tasks.Task;
 import net.joelinn.asana.users.User;
+import net.joelinn.asana.users.Users;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 
@@ -25,4 +27,11 @@ public class Story {
     public Task target;
     public String source;
     public String type;
+    
+    public boolean hearted;
+    
+    public Users hearts;
+    
+    @JsonProperty("num_hearts")
+    public Integer numHearts;
 }
