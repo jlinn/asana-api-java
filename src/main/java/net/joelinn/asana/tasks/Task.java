@@ -7,12 +7,14 @@ import net.joelinn.asana.users.Users;
 import net.joelinn.asana.workspaces.Workspace;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonRootName;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * Joe Linn
  * 11/17/13
  */
 @JsonRootName("data")
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Task {
     public long id;
     public User assignee;
@@ -30,7 +32,7 @@ public class Task {
 
     @JsonProperty("due_on")
     public String dueOn;
-
+    
     public Users followers;
     
     public boolean hearted;
