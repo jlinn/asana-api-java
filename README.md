@@ -10,7 +10,7 @@ Maven dependency:
 <dependency>
      <groupId>net.joelinn</groupId>
      <artifactId>asana</artifactId>
-     <version>0.5.8</version>
+     <version>0.5.9</version>
 </dependency>
 ```
 
