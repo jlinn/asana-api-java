@@ -30,6 +30,12 @@ public class ProjectsClient extends AbstractClient{
     public void deleteProject(long projectId){
         delete(Long.toString(projectId));
     }
+ 	
+    public Tasks getExpandedTasks (long projectId) {
+        MultivaluedMapImpl params = new MultivaluedMapImpl();
+        params.add("opt_expand", ".");
+        return get(String.format("%s/tasks", projectId), params).getEntity(Tasks.class);
+    }
 
     public Tasks getTasks(long projectId){
         return get(String.format("%s/tasks", projectId)).getEntity(Tasks.class);
