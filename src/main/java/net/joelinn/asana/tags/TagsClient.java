@@ -14,6 +14,15 @@ public class TagsClient extends AbstractClient{
         super(apiKey);
     }
 
+    /**
+     * @param apiKey            your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout       the read timeout in MILLISECONDS
+     */
+    public TagsClient(String apiKey, int connectionTimeout, int readTimeout) {
+        super(apiKey, connectionTimeout, readTimeout);
+    }
+
     public Tag createTag(TagsRequestBuilder builder){
         return post("", builder.build()).getEntity(Tag.class);
     }

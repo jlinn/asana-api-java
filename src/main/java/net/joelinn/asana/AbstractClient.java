@@ -26,6 +26,15 @@ public abstract class AbstractClient {
     protected WebResource service;
 
     public AbstractClient(String apiKey){
+        this(apiKey, 0, 0);
+    }
+
+    /**
+     * @param apiKey your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout the read timeout in MILLISECONDS
+     */
+    public AbstractClient(String apiKey, int connectionTimeout, int readTimeout){
         this.apiKey = apiKey;
 
         ClientConfig config = new DefaultClientConfig();
@@ -36,6 +45,8 @@ public abstract class AbstractClient {
         //config.getClasses().add(JacksonJsonProvider.class);
         Client client = Client.create(config);
         client.addFilter(new HTTPBasicAuthFilter(apiKey, ""));
+        client.setConnectTimeout(connectionTimeout);
+        client.setReadTimeout(readTimeout);
         service = client.resource(UriBuilder.fromUri(BASE_URL).build());
     }
 

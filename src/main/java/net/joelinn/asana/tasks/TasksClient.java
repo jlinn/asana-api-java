@@ -17,6 +17,15 @@ public class TasksClient extends AbstractClient{
         super(apiKey);
     }
 
+    /**
+     * @param apiKey            your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout       the read timeout in MILLISECONDS
+     */
+    public TasksClient(String apiKey, int connectionTimeout, int readTimeout) {
+        super(apiKey, connectionTimeout, readTimeout);
+    }
+
     public Task createTask(TaskRequestBuilder builder){
         return post("tasks", builder.build()).getEntity(Task.class);
     }

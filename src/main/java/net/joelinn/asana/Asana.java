@@ -19,6 +19,10 @@ import java.util.Map;
 public class Asana {
     protected String apiKey;
 
+    private Integer connectionTimeout;
+
+    private Integer readTimeout;
+
     protected Map<Class<? extends AbstractClient>, AbstractClient> clients;
 
     public Asana(String apiKey){
@@ -26,11 +30,30 @@ public class Asana {
         clients = new HashMap<>();
     }
 
+    /**
+     * @param apiKey your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout the read timeout in MILLISECONDS
+     */
+    public Asana(String apiKey, int connectionTimeout, int readTimeout){
+        this(apiKey);
+        this.connectionTimeout = connectionTimeout;
+        this.readTimeout = readTimeout;
+    }
+
     @SuppressWarnings("unchecked")
     protected <T> T getClient(Class<? extends AbstractClient> clazz){
         if(!clients.containsKey(clazz)){
             try {
-                clients.put(clazz, clazz.getConstructor(String.class).newInstance(apiKey));
+                AbstractClient client;
+                if(this.connectionTimeout != null && this.readTimeout != null){
+                    client = clazz.getConstructor(String.class, Integer.class, Integer.class)
+                            .newInstance(apiKey, connectionTimeout, readTimeout);
+                }
+                else{
+                    client = clazz.getConstructor(String.class).newInstance(apiKey);
+                }
+                clients.put(clazz, client);
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 // This should never happen.
                 e.printStackTrace();

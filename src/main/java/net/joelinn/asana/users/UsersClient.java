@@ -13,6 +13,15 @@ public class UsersClient extends AbstractClient {
     }
 
     /**
+     * @param apiKey            your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout       the read timeout in MILLISECONDS
+     */
+    public UsersClient(String apiKey, int connectionTimeout, int readTimeout) {
+        super(apiKey, connectionTimeout, readTimeout);
+    }
+
+    /**
      * Retrieve a specific user
      * @param userId the id of the user to be retrieved
      * @return a User object

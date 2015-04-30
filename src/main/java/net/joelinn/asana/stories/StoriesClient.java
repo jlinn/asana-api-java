@@ -14,6 +14,15 @@ public class StoriesClient extends AbstractClient{
         super(apiKey);
     }
 
+    /**
+     * @param apiKey            your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout       the read timeout in MILLISECONDS
+     */
+    public StoriesClient(String apiKey, int connectionTimeout, int readTimeout) {
+        super(apiKey, connectionTimeout, readTimeout);
+    }
+
     public Story getStory(long storyId){
         return get(Long.toString(storyId)).getEntity(Story.class);
     }

@@ -21,6 +21,15 @@ public class WorkspacesClient extends AbstractClient{
     }
 
     /**
+     * @param apiKey            your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout       the read timeout in MILLISECONDS
+     */
+    public WorkspacesClient(String apiKey, int connectionTimeout, int readTimeout) {
+        super(apiKey, connectionTimeout, readTimeout);
+    }
+
+    /**
      * Retrieve all workspaces visible by the user associated with the current api key
      * @return a list of Workspace objects
      */

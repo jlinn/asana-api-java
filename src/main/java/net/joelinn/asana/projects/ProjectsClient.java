@@ -15,6 +15,15 @@ public class ProjectsClient extends AbstractClient{
         super(apiKey);
     }
 
+    /**
+     * @param apiKey            your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout       the read timeout in MILLISECONDS
+     */
+    public ProjectsClient(String apiKey, int connectionTimeout, int readTimeout) {
+        super(apiKey, connectionTimeout, readTimeout);
+    }
+
     public Project createProject(ProjectRequestBuilder builder){
         return post("", builder.build()).getEntity(Project.class);
     }

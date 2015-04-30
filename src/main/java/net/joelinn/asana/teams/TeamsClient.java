@@ -13,6 +13,15 @@ public class TeamsClient extends AbstractClient{
     }
 
     /**
+     * @param apiKey            your Asana API key
+     * @param connectionTimeout the connection timeout in MILLISECONDS
+     * @param readTimeout       the read timeout in MILLISECONDS
+     */
+    public TeamsClient(String apiKey, int connectionTimeout, int readTimeout) {
+        super(apiKey, connectionTimeout, readTimeout);
+    }
+
+    /**
      * Retrieve all teams of which the current user is a member within the given organization
      * @param organizationId an organization id
      * @return a list of Team objects
