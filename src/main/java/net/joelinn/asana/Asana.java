@@ -47,7 +47,7 @@ public class Asana {
             try {
                 AbstractClient client;
                 if(this.connectionTimeout != null && this.readTimeout != null){
-                    client = clazz.getConstructor(String.class, Integer.class, Integer.class)
+                    client = clazz.getConstructor(String.class, int.class, int.class)
                             .newInstance(apiKey, connectionTimeout, readTimeout);
                 }
                 else{
