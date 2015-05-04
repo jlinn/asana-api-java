@@ -23,4 +23,10 @@ public class AsanaTest extends BaseTest{
     public void testGetClient(){
         TestCase.assertEquals(ProjectsClient.class, client.projects().getClass());
     }
+
+    @Test
+    public void testGetClientWithTimeoutsSpecified() {
+    	client = new Asana(getApiKey(), 1, 1);
+        TestCase.assertEquals(ProjectsClient.class, client.projects().getClass());
+    }
 }
