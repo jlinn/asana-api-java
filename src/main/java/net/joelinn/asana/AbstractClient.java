@@ -40,6 +40,7 @@ public abstract class AbstractClient {
         ClientConfig config = new DefaultClientConfig();
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationConfig.Feature.UNWRAP_ROOT_VALUE, true);
+        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         JacksonJsonProvider provider = new JacksonJsonProvider(mapper);
         config.getSingletons().add(provider);
         //config.getClasses().add(JacksonJsonProvider.class);
